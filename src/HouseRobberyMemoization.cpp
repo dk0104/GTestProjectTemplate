@@ -1,4 +1,4 @@
-#include "HouseRobberyMemorization.hpp"
+#include "HouseRobberyMemoization.hpp"
 
 
 int HouseRobberyMemoization::Robber(vector<int> slot) {

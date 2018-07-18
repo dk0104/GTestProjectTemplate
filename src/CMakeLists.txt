@@ -4,13 +4,14 @@ add_library(src "")
 
 
 set(SOURCE_FILES
-        HouseRobberyMemorization.cpp
+        HouseRobberyMemoization.cpp
+        matrixSquareFinder.cpp
 
 )
 
 set(HEADER_FILES
-        HouseRobberyMemorization.hpp
-
+        HouseRobberyMemoization.hpp
+        matrixSquareFinder.hpp
 )
 
 
