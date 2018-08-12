@@ -3,6 +3,7 @@ enable_testing()
 add_executable(unit_tests
     HouseRobberyTest.cpp
     MatrixSquareFinderTest.cpp
+    UnsortStuffTest.cpp
 )
 
 target_link_libraries(unit_tests

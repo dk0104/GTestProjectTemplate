@@ -6,12 +6,13 @@ add_library(src "")
 set(SOURCE_FILES
         HouseRobberyMemoization.cpp
         matrixSquareFinder.cpp
-
+        unsortStuff.cpp
 )
 
 set(HEADER_FILES
         HouseRobberyMemoization.hpp
         matrixSquareFinder.hpp
+        unsortSruff.hpp
 )
 
 
