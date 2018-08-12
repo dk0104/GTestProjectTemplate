@@ -35,7 +35,7 @@ void UnsortStuff::Run(int count)
 {
     while(count > 0){
         ToggleMap();
-        std::cout << "Iterator" << iterator << std::endl;
+        std::cout << "Iterator : " << iterator << std::endl;
         count --;
     }
 
