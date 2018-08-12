@@ -1,9 +1,13 @@
 //
 // Created by toor on 7/18/18.
+// More examples https://github.com/google/googletest/blob/master/googletest/samples/sample7_unittest.cc
 //
 
 #include "gtest/gtest.h"
 #include <matrixSquareFinder.hpp>
+
+using ::testing::TestWithParam;
+using ::testing::ValuesIn;
 
 using namespace std;
 using ::testing::TestWithParam;
@@ -51,3 +55,6 @@ TestInput positiveInput={
         ),
 };
 
+class MatrixFieldTest: public  TestWithParam<TestInput >{
+
+};
