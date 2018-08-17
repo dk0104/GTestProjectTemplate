@@ -2,8 +2,8 @@
 // Created by toor on 7/13/18.
 //
 
-#include <HouseRobberyMemoization.hpp>
-#include "gtest/gtest.h"
+//#include "HouseRobberyMemoization.hpp"
+/*#include "gtest/gtest.h"
 using namespace std;
 
 class HouseRobberyTest : public  ::testing::Test
@@ -30,5 +30,5 @@ TEST_F(HouseRobberyTest, simpleTest2) {
 vector<int> testVector = {1, 4, 3, 8, 16, 1, 1, 100};
 int result = mpHouseRobberyMemoization->Robber(testVector);
 EXPECT_EQ(result, 120);
-}
+}*/
 

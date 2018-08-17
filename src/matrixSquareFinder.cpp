@@ -4,7 +4,7 @@
 
 #include "matrixSquareFinder.hpp"
 
-int MatrixSquareFinder::SquareNumber(vector<vector<char>> matrix) {
+int MatrixSquareFinder::SquareNumber(std::vector<std::vector<char>> matrix) {
     int maxCounter = 0;
     for (int row = 0; row < matrix.size(); row++) {
         for (int column = 0; column < matrix[row].size(); column++) {
@@ -22,7 +22,7 @@ int MatrixSquareFinder::SquareNumber(vector<vector<char>> matrix) {
     return maxCounter;
 }
 
-void MatrixSquareFinder::MarkSquare(vector<vector<char>> &field, int row, int column)
+void MatrixSquareFinder::MarkSquare(std::vector<std::vector<char>> &field, int row, int column)
 {
     if (field[row][column - 1] != '0' &&
         field[row - 1][column] != '0' &&

@@ -18,7 +18,7 @@ protected:
     }
 
     void TearDown() override{
-        if(mpUnsortStuff!= nullptr){
+        if(mpUnsortStuff!= NULL){
             delete  mpUnsortStuff;
         }
     }

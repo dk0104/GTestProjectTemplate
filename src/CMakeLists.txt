@@ -4,21 +4,21 @@ add_library(src "")
 
 
 set(SOURCE_FILES
-        HouseRobberyMemoization.cpp
-        matrixSquareFinder.cpp
-        unsortStuff.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/HouseRobberyMemoization.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/matrixSquareFinder.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/unsortStuff.cpp
 )
 
 set(HEADER_FILES
-        HouseRobberyMemoization.hpp
-        matrixSquareFinder.hpp
-        unsortSruff.hpp
+        ${CMAKE_CURRENT_LIST_DIR}/HouseRobberyMemoization.hpp
+        ${CMAKE_CURRENT_LIST_DIR}/matrixSquareFinder.hpp
+        ${CMAKE_CURRENT_LIST_DIR}/unsortSruff.hpp
 )
-
+message(STATUS "SOURCES" ${SOURCE_FILES})
 
 target_sources(src
     PRIVATE  
-        ${SOURCE_FILES} 
+        ${SOURCE_FILES}
     PUBLIC
         ${HEADER_FILES}
     )

@@ -9,14 +9,13 @@
 #include <vector>
 #include <iostream>
 
-using namespace std;
 
 class MatrixSquareFinder {
 public:
-    int SquareNumber(vector<vector<char>> matrix);
+    int SquareNumber(std::vector<std::vector<char> > matrix);
 
 protected:
-    void MarkSquare(vector<vector<char>> &field, int row, int column);
+    void MarkSquare(std::vector<std::vector<char> > &field, int row, int column);
 };
 
 

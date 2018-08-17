@@ -18,43 +18,68 @@ using ::testing::Combine;
 
 struct MatrixTestChunk
 {
-    MatrixTestChunk(vector<vector<char>> vector): mMatrixItem(vector){
-
+    MatrixTestChunk(std::vector<std::vector<char> > vector, int result):
+        mMatrixItem(vector),
+        expectedResult(result)
+    {
     }
 
-    vector<vector<char>>& mMatrixItem;
+    std::vector<std::vector<char> >& mMatrixItem;
+    int expectedResult;
 };
 
-typedef MatrixTestChunk TestInput[];
+typedef MatrixTestChunk* TestInput[];
 
+auto chunk1 = new MatrixTestChunk({
+                                      {'1', '0', '1', '1', '1'},
+                                      {'1', '0', '1', '1', '1'},
+                                      {'1', '1', '1', '1', '1'},
+                                      {'1', '0', '0', '1', '0'},
+                                      {'1', '0', '0', '1', '0'}
+                                  },1);
 
-TestInput positiveInput={
-        MatrixTestChunk(
-        {
-            {'1', '0', '1', '1', '1'},
-            {'1', '0', '1', '1', '1'},
-            {'1', '1', '1', '1', '1'},
-            {'1', '0', '0', '1', '0'},
-            {'1', '0', '0', '1', '0'}}
-        ),
-        MatrixTestChunk(
-        {
-            {'1', '0', '1', '1', '1'},
-            {'1', '0', '1', '1', '1'},
-            {'1', '1', '1', '1', '1'},
-            {'1', '0', '1', '1', '1'},
-            {'1', '0', '1', '1', '1'}}
-        ),
-        MatrixTestChunk(
-        {
-            {'1', '1', '1', '0', '1'},
-            {'1', '1', '1', '0', '1'},
-            {'0', '0', '1', '0', '0'},
-            {'0', '0', '1', '0', '0'},
-            {'0', '0', '1', '0', '0'}}
-        ),
+auto chunk2 = new MatrixTestChunk({
+                                      {'1', '1', '1', '1', '1'},
+                                      {'1', '1', '1', '1', '1'},
+                                      {'1', '1', '1', '1', '1'},
+                                      {'0', '0', '0', '1', '0'},
+                                      {'0', '0', '0', '1', '0'}
+                                  },1);
+
+auto chunk3 = new MatrixTestChunk({
+                                      {'1', '1', '0', '1', '1'},
+                                      {'1', '1', '0', '0', '0'},
+                                      {'1', '1', '0', '1', '1'},
+                                      {'0', '0', '0', '1', '0'},
+                                      {'0', '0', '0', '1', '0'}
+                                  },1);
+TestInput positiveInput{chunk1,chunk2,chunk3};
+
+class MatrixFieldTest: public  TestWithParam<MatrixTestChunk*>{
+public:
+    ~MatrixFieldTest(){
+        delete testInput;
+
+    }
+    virtual void SetUp(){
+        std::cout << "SetUp" << std::endl;
+        squareFinder = new MatrixSquareFinder();
+        std::cout << "MAtrix sqare finder" << std::endl;
+    }
+    virtual void TearDown(){
+        delete squareFinder;
+    }
+protected:
+    MatrixTestChunk* testInput;
+    MatrixSquareFinder* squareFinder;
 };
 
-class MatrixFieldTest: public  TestWithParam<TestInput >{
+TEST_P(MatrixFieldTest,MatrixSquareFinder_ValidInput_ValidOutput){
+    auto testInput = GetParam();
+    int result = squareFinder->SquareNumber(testInput->mMatrixItem);
+    EXPECT_EQ(testInput->expectedResult,result);
+}
 
-};
+INSTANTIATE_TEST_CASE_P(PositiveTestInput,
+                        MatrixFieldTest,
+                        ::testing::ValuesIn(positiveInput));

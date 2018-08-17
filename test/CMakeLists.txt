@@ -1,15 +1,13 @@
-enable_testing()
-
 add_executable(unit_tests
+    UnsortStuffTest.cpp
     HouseRobberyTest.cpp
     MatrixSquareFinderTest.cpp
-    UnsortStuffTest.cpp
 )
 
 target_link_libraries(unit_tests
+    src
     gtest
     gtest_main
-    src
 )
 
 add_test(
