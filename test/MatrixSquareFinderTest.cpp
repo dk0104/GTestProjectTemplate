@@ -18,13 +18,13 @@ using ::testing::Combine;
 
 struct MatrixTestChunk
 {
-    MatrixTestChunk(std::vector<std::vector<char> > vector, int result):
-        mMatrixItem(vector),
+    MatrixTestChunk(std::vector<std::vector<char>> input, int result):
+        xItem(input),
         expectedResult(result)
     {
     }
 
-    std::vector<std::vector<char> >& mMatrixItem;
+    std::vector<std::vector<char>> xItem;
     int expectedResult;
 };
 
@@ -36,7 +36,7 @@ auto chunk1 = new MatrixTestChunk({
                                       {'1', '1', '1', '1', '1'},
                                       {'1', '0', '0', '1', '0'},
                                       {'1', '0', '0', '1', '0'}
-                                  },1);
+                                  },0);
 
 auto chunk2 = new MatrixTestChunk({
                                       {'1', '1', '1', '1', '1'},
@@ -44,7 +44,7 @@ auto chunk2 = new MatrixTestChunk({
                                       {'1', '1', '1', '1', '1'},
                                       {'0', '0', '0', '1', '0'},
                                       {'0', '0', '0', '1', '0'}
-                                  },1);
+                                  },0);
 
 auto chunk3 = new MatrixTestChunk({
                                       {'1', '1', '0', '1', '1'},
@@ -52,22 +52,25 @@ auto chunk3 = new MatrixTestChunk({
                                       {'1', '1', '0', '1', '1'},
                                       {'0', '0', '0', '1', '0'},
                                       {'0', '0', '0', '1', '0'}
-                                  },1);
+                                  },0);
+
+
 TestInput positiveInput{chunk1,chunk2,chunk3};
 
 class MatrixFieldTest: public  TestWithParam<MatrixTestChunk*>{
 public:
     ~MatrixFieldTest(){
-        delete testInput;
-
+        if(testInput!= nullptr){
+            delete testInput;
+        }
     }
     virtual void SetUp(){
         std::cout << "SetUp" << std::endl;
         squareFinder = new MatrixSquareFinder();
+        testInput = GetParam();
         std::cout << "MAtrix sqare finder" << std::endl;
     }
     virtual void TearDown(){
-        delete squareFinder;
     }
 protected:
     MatrixTestChunk* testInput;
@@ -75,9 +78,11 @@ protected:
 };
 
 TEST_P(MatrixFieldTest,MatrixSquareFinder_ValidInput_ValidOutput){
-    auto testInput = GetParam();
-    int result = squareFinder->SquareNumber(testInput->mMatrixItem);
-    EXPECT_EQ(testInput->expectedResult,result);
+
+    if(testInput!= nullptr){
+        auto result = squareFinder->SquareNumber(testInput->xItem);
+        EXPECT_EQ(testInput->expectedResult,result);
+    }
 }
 
 INSTANTIATE_TEST_CASE_P(PositiveTestInput,

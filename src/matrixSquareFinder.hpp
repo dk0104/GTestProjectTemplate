@@ -12,7 +12,7 @@
 
 class MatrixSquareFinder {
 public:
-    int SquareNumber(std::vector<std::vector<char> > matrix);
+    int SquareNumber(std::vector<std::vector<char>> matrix);
 
 protected:
     void MarkSquare(std::vector<std::vector<char> > &field, int row, int column);
