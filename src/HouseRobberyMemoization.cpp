@@ -1,4 +1,8 @@
+#define NOMINMAX
+#define min(a,b)            (((a) < (b)) ? (a) : (b))
+
 #include "HouseRobberyMemoization.hpp"
+using namespace std;
 
 
 int HouseRobberyMemoization::Robber(vector<int> slot) {

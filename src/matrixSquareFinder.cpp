@@ -3,35 +3,48 @@
 //
 
 #include "matrixSquareFinder.hpp"
+using namespace std;
 
-int MatrixSquareFinder::SquareNumber(std::vector<std::vector<char>> matrix) {
-    int maxCounter = 0;
-    for (int row = 0; row < matrix.size(); row++) {
-        for (int column = 0; column < matrix[row].size(); column++) {
-            if (row == 0 || column == 0)
+int MatrixSquareFinder::SquareNumber(vector<vector<char>> matrix) {
+    vector<vector<int>> copyField;
+    MarkSquare(matrix,copyField);
+    return FindMaxSquare(copyField);
+}
+
+void MatrixSquareFinder::MarkSquare(vector<vector<char>>& field, vector<vector<int>>& copyField)
+{
+
+    for(int i = 0; i < int (field.size()) ;i++)
+    {
+        vector<int> row;
+        for(int j = 0 ; j < int (field[i].size()); j++)
+        {
+            if(field[i][j] =='0' || i==0 || j==0)
             {
-                continue;
+                row.push_back(0);
             }
+            else
+            {
+                row.push_back(1);
+            }
+        }
+        copyField.push_back(row);
+    }
+}
 
-            if (matrix[row][column] != '0') {
-
-                MarkSquare(matrix, row, column);
+int MatrixSquareFinder::FindMaxSquare(vector<vector<int>>& field)
+{
+    int max = 0;
+    for(int i=1;i<field.size();i++)
+    {
+        for(int j=1;j<field[i].size();j++)
+        {
+            field[i][j] = min(field[i-1][j],min(field[i][j-i],field[i-1][j-i]))+1;
+            if(field[i][j]>max){
+                max = field[i][j];
             }
         }
     }
-    return maxCounter;
-}
-
-void MatrixSquareFinder::MarkSquare(std::vector<std::vector<char>> &field, int row, int column)
-{
-    if (field[row][column - 1] != '0' &&
-        field[row - 1][column] != '0' &&
-        field[row - 1][column - 1] != '0')
-    {
-        field[row][column] = 'x';
-        field[row][column - 1] = 'x';
-        field[row - 1][column] = 'x';
-        field[row - 1][column - 1] = 'x';
-    }
+    return max*max;
 
 }

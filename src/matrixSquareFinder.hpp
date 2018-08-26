@@ -14,8 +14,9 @@ class MatrixSquareFinder {
 public:
     int SquareNumber(std::vector<std::vector<char>> matrix);
 
+    int FindMaxSquare(std::vector<std::vector<int>> &vector);
 protected:
-    void MarkSquare(std::vector<std::vector<char> > &field, int row, int column);
+    void MarkSquare(std::vector<std::vector<char>>& field, std::vector<std::vector<int>>& copyField);
 };
 
 
