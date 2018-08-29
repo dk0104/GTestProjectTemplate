@@ -52,7 +52,7 @@ auto chunk3 = new MatrixTestChunk({
                                       {'1', '1', '1', '1', '1'},
                                       {'1', '1', '1', '1', '0'},
                                       {'0', '0', '0', '1', '0'}
-                                  },0);
+                                  },16);
 
 
 TestInput positiveInput{chunk1,chunk2,chunk3};
